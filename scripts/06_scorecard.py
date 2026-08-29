@@ -5,8 +5,8 @@ Computes a Data Quality Scorecard summarizing the whole pipeline: field
 completeness, how much duplication was found and removed, how successfully
 raw drug names were mapped to canonical entities, and the breakdown of
 records by data quality flag. This is the artifact you'd hand to a
-stakeholder (or show an interviewer) to answer "how good is this data?"
-without them having to read the code.
+stakeholder to answer "how good is this data?" without them having to read
+the code.
 
 Output: data/processed/data_quality_scorecard.csv
 """

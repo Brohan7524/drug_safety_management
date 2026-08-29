@@ -1,8 +1,7 @@
 # Drug Safety Master Data Management & Adverse Event Quality Dashboard
 
-A portfolio project demonstrating master data management (MDM) and data
-quality engineering on **real** pharmacovigilance data, built for a Data
-Management internship application.
+A master data management (MDM) and data quality pipeline built on **real**
+pharmacovigilance data from the FDA.
 
 It pulls real adverse event reports from the FDA's public API, standardizes
 inconsistent drug names into a master reference table, cleans and
@@ -96,19 +95,19 @@ independently re-runnable. `01_fetch_data.py` caches every API page to
 `data/raw/` and skips any page already on disk, so re-running the whole
 pipeline doesn't re-hit the API.
 
-## Design decisions (for the interview)
+## Design decisions
 
 **Why these 6 drugs?** Humira/Adalimumab, Lipitor/Atorvastatin,
 Glucophage/Metformin, Prilosec/Omeprazole, Prozac/Fluoxetine, and
 Advil+Motrin/Ibuprofen. Each is a well-known brand/generic pair, and
 Advil+Motrin/Ibuprofen deliberately has **two** brand names for one generic
-substance — that's the case that actually forces you to build a many-to-one
-mapping instead of a simple find-and-replace.
+substance — that's the case that actually forces a many-to-one mapping
+instead of a simple find-and-replace.
 
 **Why search on `medicinalproduct` instead of openFDA's own
 `openfda.brand_name`/`openfda.generic_name` fields?** openFDA already
 provides FDA-normalized name fields, but using them would defeat the point
-of this project — there'd be nothing left to standardize. `medicinalproduct`
+of the project — there'd be nothing left to standardize. `medicinalproduct`
 is the free-text field exactly as the original submitter typed it, which is
 where the real-world messiness actually lives.
 
@@ -206,9 +205,8 @@ duplicate rates, drug-mapping success rate, and the quality-flag breakdown
   much as by actual event frequency. This project treats it as a **data
   quality and MDM exercise**, not a clinical safety conclusion.
 - The record cap in `01_fetch_data.py` (1,500 records per search term) is a
-  deliberate scope choice to keep the pull fast and reproducible for a
-  portfolio project, not a technical ceiling — openFDA has ~690K+ Humira
-  reports alone.
+  deliberate scope choice to keep the pull fast and reproducible, not a
+  technical ceiling — openFDA has ~690K+ Humira reports alone.
 - The near-duplicate heuristic in Silver is not validated against
   ground-truth labels; it's a defensible, explainable approximation of a
   problem FAERS documentation itself acknowledges exists.

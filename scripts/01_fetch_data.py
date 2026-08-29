@@ -7,8 +7,8 @@ and caches the raw JSON responses to disk.
 
 Design decisions:
 - No API key is used. openFDA allows ~240 requests/min and 1,000/day per IP
-  without one, which is plenty for a one-time portfolio data pull. If you hit
-  a 429, the script backs off and retries.
+  without one, which is plenty for a one-time data pull like this. If you
+  hit a 429, the script backs off and retries.
 - We search on `patient.drug.medicinalproduct`, the free-text "as reported"
   drug name field, using each brand/generic term separately. This is
   deliberately the messy field (not openFDA's own normalized brand_name/
