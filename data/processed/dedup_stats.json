@@ -1,0 +1,7 @@
+{
+  "bronze_rows": 14742,
+  "exact_duplicates_removed": 5457,
+  "near_duplicates_removed": 1275,
+  "silver_rows": 8010,
+  "duplicate_rate": 0.4567
+}
